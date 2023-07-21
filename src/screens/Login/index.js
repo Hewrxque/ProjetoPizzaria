@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {
   View,
   SafeAreaView,
@@ -9,8 +9,10 @@ import {
 } from 'react-native';
 import styles from './styles';
 import Logo from '../../assets/Pizzaria.png';
+import { AuthContext } from '../../context/AuthContext';
 
 export default function Login() {
+  const { user } = useContext(AuthContext)
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
