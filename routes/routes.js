@@ -1,8 +1,13 @@
 import React from 'react';
-import AppNav from './AppNav/AppNav';
+import Stack from './StackMain/StackMain';
+import Auth from  './StackAuth/StackAuth'
+import {NavigationContainer} from '@react-navigation/native';
+import { StatusBar } from 'react-native';
 
-export default function () {
+export default function Routes() {
+  const isAuthenticate = false;
+  const loading = false;
   return (
-        <AppNav />
+    isAuthenticate ? <Stack/> : <Auth/>
   );
 }
