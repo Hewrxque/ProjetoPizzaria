@@ -20,10 +20,10 @@ export const AuthContext = createContext({} as AuthContextData)
 
 export function AuthProvider({children} : AuthProviderProps){
     const [user, setUser] = useState<UserProps>({
-        id: '123',
-        name: 'Rick',
-        email: 'Rick@gmail.com',
-        token: '12345678'
+        id: '',
+        name: '',
+        email: '',
+        token: ''
     })
 
     const isAuthenticated = !!user.name;
