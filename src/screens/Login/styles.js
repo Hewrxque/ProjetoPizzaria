@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   image: {
     width: 250,
     height: 240,
-    margin: 20,
+    margin: '5%',
   },
   textInput: {
     width: '90%',
@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     color: '#fff',
     margin: 10,
+    paddingHorizontal: 8,
   },
   button: {
     width: '80%',
@@ -31,6 +32,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginHorizontal: 20,
+  },
+  textButton: {
+    fontWeight: 'bold',
+    color: '#922222',
   },
 });
 

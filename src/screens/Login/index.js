@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   SafeAreaView,
@@ -8,9 +8,19 @@ import {
   Image,
 } from 'react-native';
 import styles from './styles';
-import Logo from '../../Assets/Pizzaria.png';
+import Logo from '../../assets/Pizzaria.png';
 
 export default function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  function handleLongin(){
+
+    if(email === '' || password === ''){
+      return;
+    }
+      console.log('Email:' + email)
+  }
   return (
     <SafeAreaView style={styles.container}>
       <View
@@ -21,12 +31,21 @@ export default function Login() {
         }}>
         <Image source={Logo} style={styles.image} />
       </View>
-      <View
-        style={styles.contentInput}>
-        <TextInput placeholder="Digite seu email" style={styles.textInput} />
-        <TextInput placeholder="Digite seu senha" style={styles.textInput} />
-        <TouchableOpacity style={styles.button}>
-          <Text style={{fontWeight: 'bold', color: '#922222'}}>Acessar</Text>
+      <View style={styles.contentInput}>
+        <TextInput
+          placeholder="Digite seu email"
+          style={styles.textInput}
+          value={email}
+          onChangeText={setEmail}
+        />
+        <TextInput
+          placeholder="Digite seu senha"
+          style={styles.textInput}
+          value={password}
+          onChangeText={setPassword}
+        />
+        <TouchableOpacity style={styles.button} onPress={handleLongin}>
+          <Text style={styles.textButton}>Acessar</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
