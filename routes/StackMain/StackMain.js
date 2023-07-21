@@ -1,13 +1,14 @@
-import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import Login from '../../src/screens/Login';
-const { Navigator, Screen } = createNativeStackNavigator();
+import React from "react";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-export default function StackScreen({ }) {
-  return (
-    <Navigator initialRouteName='Login' screenOptions={{ headerShown: false }}>
-       <Screen name="Login" component={Login} />
-    
-    </Navigator>
-  );
+import DashBoard from "../../src/screens/DashBoard";
+
+const Stack = createNativeStackNavigator();
+
+export default function StackMain(){
+    return(
+        <Stack.Navigator>
+            <Stack.Screen name='DashBoard' component={DashBoard}/>
+        </Stack.Navigator>
+    )
 }
