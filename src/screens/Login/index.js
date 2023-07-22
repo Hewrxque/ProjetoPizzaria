@@ -6,25 +6,27 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
+  ScrollView
 } from 'react-native';
 import styles from './styles';
 import Logo from '../../assets/Pizzaria.png';
 import { AuthContext } from '../../context/AuthContext';
 
 export default function Login() {
-  const { user } = useContext(AuthContext)
+  const { Login } = useContext(AuthContext)
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  function handleLongin(){
+async  function handleLongin(){
 
     if(email === '' || password === ''){
       return;
     }
-      console.log('Email:' + email)
+      await Login({email, password})
   }
   return (
     <SafeAreaView style={styles.container}>
+      <ScrollView>
       <View
         style={{
           justifyContent: 'center',
@@ -50,6 +52,7 @@ export default function Login() {
           <Text style={styles.textButton}>Acessar</Text>
         </TouchableOpacity>
       </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
