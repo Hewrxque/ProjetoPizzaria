@@ -39,8 +39,6 @@ export function AuthProvider({children} : AuthProviderProps){
     const isAuthenticated = !!user.name;
 
     async function login({email, password}: LoginProps){
-        console.log(email)
-        console.log(password)
         setLoadingAuth(true);
 
         try{

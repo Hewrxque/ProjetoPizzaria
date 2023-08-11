@@ -8,7 +8,7 @@ import { AuthContext } from '../src/context/AuthContext';
 
 export default function Routes() {
 
-  const  { isAuthenticate } = useContext(AuthContext);
+  const  { isAuthenticated } = useContext(AuthContext);
   const loading = false;
 
   if(loading){
@@ -26,6 +26,6 @@ export default function Routes() {
     )
   }
   return (
-    isAuthenticate ? <Auth/> : <Stack/>
+    isAuthenticated ? <Stack/> : <Auth/>
   );
 }
