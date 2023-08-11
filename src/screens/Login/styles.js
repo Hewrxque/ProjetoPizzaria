@@ -13,15 +13,14 @@ const styles = StyleSheet.create({
   },
   textInput: {
     width: '90%',
-    borderBottomColor: '#FFFFFF',
-    borderBottomWidth: 1,
+    backgroundColor: '#1D1D43',
     color: '#fff',
     margin: 10,
     paddingHorizontal: 8,
   },
   button: {
     width: '80%',
-    backgroundColor: '#fff',
+    backgroundColor: '#00FF7F',
     height: 50,
     justifyContent: 'center',
     alignItems: 'center',
@@ -35,7 +34,8 @@ const styles = StyleSheet.create({
   },
   textButton: {
     fontWeight: 'bold',
-    color: '#922222',
+    fontSize: 18,
+    color: '#1D1D2E',
   },
 });
 

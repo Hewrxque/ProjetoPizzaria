@@ -13,7 +13,7 @@ import styles from './styles';
 import { AuthContext } from '../../context/AuthContext';
 import logo from '../../Assets/Pizzaria.png'
 export default function Login() {
-  const { Login } = useContext(AuthContext)
+  const { login } = useContext(AuthContext)
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -22,7 +22,7 @@ async  function handleLongin(){
     if(email === '' || password === ''){
       return;
     }
-      await Login({email, password})
+      await login({email, password})
   }
   return (
     <SafeAreaView style={styles.container}>

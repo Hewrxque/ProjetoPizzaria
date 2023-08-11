@@ -1,10 +1,11 @@
 import React, {useState, createContext, ReactNode} from "react";
 import { api } from "../services/api";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type AuthContextData = {
     user: UserProps;
     isAuthenticated: boolean;
-    Login: (credentials: LoginProps) => Promise<void>;
+    login: (credentials: LoginProps) => Promise<void>;
 }
 
 type UserProps = {
@@ -37,13 +38,29 @@ export function AuthProvider({children} : AuthProviderProps){
 
     const isAuthenticated = !!user.name;
 
-    async function Login({email, password}: LoginProps){
+    async function login({email, password}: LoginProps){
         console.log(email)
         console.log(password)
         setLoadingAuth(true);
 
         try{
+            const response = await api.post('/session', {
+                email, 
+                password
+            })
+
+            console.log(response.data)
+
+            const {  id, name, token } = response.data;
+
+            setUser({
+                id, 
+                name,
+                email, 
+                token
+            })
             
+            setLoadingAuth(false)
 
         }catch(err){
             console.log('Erro ao acessar', err)
@@ -52,7 +69,7 @@ export function AuthProvider({children} : AuthProviderProps){
     }
     
     return(
-        <AuthContext.Provider value={{ user, isAuthenticated, Login }}>
+        <AuthContext.Provider value={{ user, isAuthenticated, login }}>
             {children}
         </AuthContext.Provider>
     )
