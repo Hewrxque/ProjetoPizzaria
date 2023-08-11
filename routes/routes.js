@@ -1,11 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Stack from './StackMain/StackMain';
-import Auth from  './StackAuth/StackAuth'
+import Auth from  './StackAuth/StackAuth';
 import {NavigationContainer} from '@react-navigation/native';
 import { StatusBar, View, ActivityIndicator } from 'react-native';
 
+import { AuthContext } from '../src/context/AuthContext';
+
 export default function Routes() {
-  const isAuthenticate = false;
+
+  const  { isAuthenticate } = useContext(AuthContext);
   const loading = false;
 
   if(loading){
@@ -23,6 +26,6 @@ export default function Routes() {
     )
   }
   return (
-    isAuthenticate ? <Stack/> : <Auth/>
+    isAuthenticate ? <Auth/> : <Stack/>
   );
 }
