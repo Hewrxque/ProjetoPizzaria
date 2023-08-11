@@ -9,9 +9,9 @@ import {
   ScrollView
 } from 'react-native';
 import styles from './styles';
-import Logo from '../../assets/Pizzaria.png';
-import { AuthContext } from '../../context/AuthContext';
 
+import { AuthContext } from '../../context/AuthContext';
+import logo from '../../Assets/Pizzaria.png'
 export default function Login() {
   const { Login } = useContext(AuthContext)
   const [email, setEmail] = useState('');
@@ -33,7 +33,7 @@ async  function handleLongin(){
           alignItems: 'center',
           marginVertical: 20,
         }}>
-        <Image source={Logo} style={styles.image} />
+        <Image source={logo} style={styles.image} />
       </View>
       <View style={styles.contentInput}>
         <TextInput
