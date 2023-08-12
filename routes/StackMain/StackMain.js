@@ -8,7 +8,7 @@ const Stack = createNativeStackNavigator();
 export default function StackMain(){
     return(
         <Stack.Navigator>
-            <Stack.Screen name='DashBoard' component={DashBoard}/>
+            <Stack.Screen name='DashBoard' component={DashBoard} options={{headerShown: false}}/>
         </Stack.Navigator>
     )
 }
