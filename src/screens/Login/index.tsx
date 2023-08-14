@@ -7,12 +7,12 @@ import {
   TouchableOpacity,
   Image,
   ScrollView,
-  ActivityIndicator
+  ActivityIndicator,
 } from 'react-native';
 import styles from './styles';
 
 import {AuthContext} from '../../context/AuthContext';
-import logo from '../../Assets/Pizzaria.png';
+
 export default function Login() {
   const {login, loadingAuth} = useContext(AuthContext);
   const [email, setEmail] = useState('');
@@ -33,7 +33,10 @@ export default function Login() {
             alignItems: 'center',
             marginVertical: 20,
           }}>
-          <Image source={logo} style={styles.image} />
+          <Image
+            style={styles.image}
+            source={require('../../Assets/Pizzaria.png')}
+          />
         </View>
         <View style={styles.contentInput}>
           <TextInput
@@ -51,9 +54,10 @@ export default function Login() {
           />
           <TouchableOpacity style={styles.button} onPress={handleLongin}>
             {loadingAuth ? (
-              <ActivityIndicator size={25} color={'#FFF'}/>
-            ): <Text style={styles.textButton}>Acessar</Text>}
-            
+              <ActivityIndicator size={25} color={'#FFF'} />
+            ) : (
+              <Text style={styles.textButton}>Acessar</Text>
+            )}
           </TouchableOpacity>
         </View>
       </ScrollView>
