@@ -24,11 +24,7 @@ export default function Dashboard() {
       return;
     }
 
-    //precisa fazer a requisiçao e abrir a mesa e navegar pra proxima tela.
-    navigation.navigate('Order', {
-      number: number,
-      order_id: '9557defc-bbd7-4af5-bc6c-ca18879ba328',
-    });
+    navigation.navigate('Order', { number: number, order_id: '9557defc-bbd7-4af5-bc6c-ca18879ba328' })
   }
 
   return (

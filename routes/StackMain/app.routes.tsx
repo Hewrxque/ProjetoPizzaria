@@ -14,20 +14,22 @@ export type StackPramsList = {
 
 const Stack = createNativeStackNavigator<StackPramsList>();
 
-export default function AppRoutes() {
-  return (
+function AppRoutes(){
+  return(
     <Stack.Navigator>
-      <Stack.Screen
-        name="Dashboard"
-        component={DashBoard}
-        options={{headerShown: false}}
+      <Stack.Screen 
+        name="Dashboard" 
+        component={DashBoard} 
+        options={{ headerShown: false }}
       />
 
       <Stack.Screen
         name="Order"
         component={Order}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
-  );
+  )
 }
+
+export default AppRoutes;
