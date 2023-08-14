@@ -10,7 +10,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import styles from './styles';
-
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {AuthContext} from '../../context/AuthContext';
 
 export default function Login() {
@@ -52,6 +52,7 @@ export default function Login() {
             secureTextEntry={true}
             onChangeText={setPassword}
           />
+          
           <TouchableOpacity style={styles.button} onPress={handleLongin}>
             {loadingAuth ? (
               <ActivityIndicator size={25} color={'#FFF'} />

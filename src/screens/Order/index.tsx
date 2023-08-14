@@ -1,8 +1,8 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import styles from './styles';
 import {useRoute, RouteProp} from '@react-navigation/native';
-
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 type RouteDetailParams = {
   Order: {
     number: string | number;
@@ -17,12 +17,12 @@ export default function Order() {
 
   return (
     <View style={styles.container}>
-      <Text>Tela order</Text>
-      <Text>{route.params.order_id}</Text>
+      <View style={styles.header}>
+        <Text style={styles.title}>Mesa {route.params.number}</Text>
+        <TouchableOpacity>
+        <Icon name={'trash'} size={40} color={'#ffffff'} />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {},
-});
