@@ -20,7 +20,7 @@ export default function Order() {
       <View style={styles.header}>
         <Text style={styles.title}>Mesa {route.params.number}</Text>
         <TouchableOpacity>
-        <Icon name={'trash'} size={40} color={'#ffffff'} />
+        <Icon name={'trash-can'} size={40} color={'#ffffff'} />
         </TouchableOpacity>
       </View>
     </View>
