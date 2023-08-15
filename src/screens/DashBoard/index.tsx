@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
-
+import {api} from '../../services/api'
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {StackPramsList} from '../../../routes/StackMain/app.routes';
 import styles from './styles';
@@ -23,8 +23,14 @@ export default function Dashboard() {
     if (number === '') {
       return;
     }
+    const response = await api.post('/order', {
+      table: Number(number)
+    })
 
-    navigation.navigate('Order', { number: number, order_id: '9557defc-bbd7-4af5-bc6c-ca18879ba328' })
+    console.log(response.data)
+    navigation.navigate('Order', { number: number, order_id: response.data.id })
+
+    setNumber('')
   }
 
   return (
