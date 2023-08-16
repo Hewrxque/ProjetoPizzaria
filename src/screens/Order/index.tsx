@@ -59,6 +59,10 @@ export default function Order() {
     }
   }
 
+  function handleChangeCategory(item: CategoryProps){
+    setCategorySelected(item);
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -109,7 +113,7 @@ export default function Order() {
         <ModalPicker
           handleCloseModal={() => setModalCategoryVisible(false)}
           options={category}
-          selectedItem={() => {}}
+          selectedItem={handleChangeCategory}
         />
       </Modal>
     </View>
