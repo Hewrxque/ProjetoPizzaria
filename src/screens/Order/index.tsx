@@ -73,6 +73,7 @@ export default function Order() {
     loadProducts();
   }, [categorySelected]);
 
+  //funçao para fechar uma order
   async function handleCloseOrder() {
     try {
       await api.delete('/order', {
@@ -87,8 +88,13 @@ export default function Order() {
     }
   }
 
+  //funçao para aparecer o modal
   function handleChangeCategory(item: CategoryProps) {
     setCategorySelected(item);
+  }
+
+  function handleChangeProduct(item: ProductsProps) {
+    setProductSelected(item);
   }
 
   return (
@@ -109,7 +115,9 @@ export default function Order() {
       )}
 
       {products.length !== 0 && (
-        <TouchableOpacity style={styles.input}>
+        <TouchableOpacity
+          style={styles.input}
+          onPress={() => setModalProductVisible(true)}>
           <Text style={{color: '#FFFFFF'}}>{productSelected?.name}</Text>
         </TouchableOpacity>
       )}
@@ -144,6 +152,17 @@ export default function Order() {
           handleCloseModal={() => setModalCategoryVisible(false)}
           options={category}
           selectedItem={handleChangeCategory}
+        />
+      </Modal>
+
+      <Modal
+        transparent={true}
+        visible={modalProductVisible}
+        animationType="fade">
+        <ModalPicker
+          handleCloseModal={() => setModalProductVisible(false)}
+          options={products}
+          selectedItem={handleChangeProduct}
         />
       </Modal>
     </View>
