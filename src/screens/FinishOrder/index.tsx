@@ -5,8 +5,8 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {api} from '../../services/api';
 
 import {useNavigation, useRoute, RouteProp} from '@react-navigation/native';
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { StackPramsList } from '../../../routes/StackMain/app.routes'
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {StackPramsList} from '../../../routes/StackMain/app.routes';
 type RouteDetailParams = {
   FinishOrder: {
     number: string | number;
@@ -18,7 +18,7 @@ type FinishOrderRouteProp = RouteProp<RouteDetailParams, 'FinishOrder'>;
 
 export default function FinishOrder() {
   const route = useRoute<FinishOrderRouteProp>();
-    const navigation = useNavigation<NativeStackNavigationProp<StackPramsList>>();
+  const navigation = useNavigation<NativeStackNavigationProp<StackPramsList>>();
   async function handleFinish() {
     try {
       await api.put('/order/send', {
@@ -26,7 +26,6 @@ export default function FinishOrder() {
       });
 
       navigation.popToTop();
-      
     } catch {
       console.log('Erro ao finalizar, tente novamente mais tarde');
     }
