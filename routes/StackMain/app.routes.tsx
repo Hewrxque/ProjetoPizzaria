@@ -34,7 +34,6 @@ function AppRoutes() {
       <Stack.Screen
         name="FinishOrder"
         component={FinishOrder}
-        options={{headerShown: false}}
       />
     </Stack.Navigator>
   );
