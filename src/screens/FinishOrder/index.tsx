@@ -3,14 +3,27 @@ import { View, Text, SafeAreaView, TouchableOpacity } from 'react-native';
 import styles from './styles';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-export function FinishOrder(){
+import { useNavigation, useRoute, RouteProp} from '@react-navigation/native';
+
+type RouteDetailParams ={
+    FinishOrder:{
+        number: string | number;
+        order_id: string;
+    }
+}
+
+type FinishOrderRouteProp = RouteProp<RouteDetailParams, 'FinishOrder'>
+
+export default function FinishOrder(){
+    const route = useRoute<FinishOrderRouteProp>();
+
     return(
         <View style={styles.container}>
             <Text style={styles.alert}>
                 Você deseja finalizar esse pedido?
             </Text>
             <Text style={styles.title}>
-                Mesa 30
+                Mesa {route.params?.number}
             </Text>
 
             <TouchableOpacity style={styles.button}>
