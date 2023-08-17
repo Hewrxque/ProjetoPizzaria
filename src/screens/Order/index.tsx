@@ -6,12 +6,14 @@ import {
   TouchableOpacity,
   TextInput,
   Modal,
+  FlatList,
 } from 'react-native';
 import styles from './styles';
 import {useRoute, RouteProp, useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {api} from '../../services/api';
 import {ModalPicker} from '../../components/ModalPicker/indexx';
+import {ListItem} from '../../components/ListItem';
 
 type RouteDetailParams = {
   Order: {
@@ -28,6 +30,13 @@ export type CategoryProps = {
 type ProductsProps = {
   id: string;
   name: string;
+};
+
+type ItemProps = {
+  id: string;
+  product_id: string;
+  name: string;
+  amount: string | number;
 };
 
 type OrderRouteProps = RouteProp<RouteDetailParams, 'Order'>;
@@ -49,6 +58,7 @@ export default function Order() {
   const [modalProductVisible, setModalProductVisible] = useState(false);
 
   const [amount, setAmount] = useState('1');
+  const [items, setItems] = useState<ItemProps[]>([]);
 
   useEffect(() => {
     async function loadInfo() {
@@ -97,13 +107,30 @@ export default function Order() {
     setProductSelected(item);
   }
 
+  //adicionar produto na mesa
+  async function handleAddItem(){
+    const response = await api.post('/order/add',{
+      order_id:  route.params?.order_id,
+      product_id: productSelected?.id,
+      amount: Number(amount)
+    })
+    let data = {
+      id: response.data.id,
+      product_id:  productSelected?.id as string,
+      name:  productSelected?.name as string,
+      amount: amount
+    }
+    setItems(oldArray => [...oldArray, data])
+  }
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>Mesa {route.params.number}</Text>
-        <TouchableOpacity onPress={handleCloseOrder}>
-          <Icon name={'trash-can'} size={40} color={'#FF3F4B'} />
-        </TouchableOpacity>
+       {items.length === 0 && (
+         <TouchableOpacity onPress={handleCloseOrder}>
+         <Icon name={'trash-can'} size={40} color={'#FF3F4B'} />
+       </TouchableOpacity>
+       )}
       </View>
 
       {category.length !== 0 && (
@@ -135,14 +162,24 @@ export default function Order() {
       </View>
 
       <View style={styles.actions}>
-        <TouchableOpacity style={styles.buttonAdd}>
+        <TouchableOpacity style={styles.buttonAdd} onPress={handleAddItem}>
           <Icon name={'plus'} size={30} color={'#FFFFFF'} />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          style={[styles.button, {opacity: items.length === 0 ? 0.3 : 1}]}
+          disabled={items.length === 0}>
           <Text style={styles.textButton}>Avançar</Text>
         </TouchableOpacity>
       </View>
+
+      <FlatList
+        showsVerticalScrollIndicator={false}
+        style={{flex: 1, marginTop: 24}}
+        data={items}
+        keyExtractor={item => item.id}
+        renderItem={({item}) => <ListItem data={item} />}
+      />
 
       <Modal
         transparent={true}
